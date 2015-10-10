@@ -6,7 +6,8 @@ module.exports = {
         leadingDot: 'Indexers cannot have leading dots.',
         leadingComma: 'Indexers cannot have leading comma.',
         requiresComma: 'Indexers require commas between indexer args.',
-        routedTokens: 'Only one token can be used per indexer when specifying routed tokens.'
+        routedTokens: 'Only one token can be used per indexer when specifying routed tokens.',
+        needCurlyBrace: 'Routed token must be surrounded by curly braces.'
     },
     range: {
         precedingNaN: 'ranges must be preceded by numbers.',
@@ -29,4 +30,3 @@ module.exports = {
         throw err + ' -- ' + tokenizer.parseString;
     }
 };
-
