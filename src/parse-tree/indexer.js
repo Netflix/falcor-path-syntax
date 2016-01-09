@@ -1,4 +1,5 @@
 var TokenTypes = require('./../TokenTypes');
+var RoutedTokens = require('./../RoutedTokens');
 var E = require('./../exceptions');
 var idxE = E.indexer;
 var range = require('./range');
@@ -42,6 +43,10 @@ module.exports = function indexer(tokenizer, openingToken, state, out) {
             case TokenTypes.token:
                 var t = +token.token;
                 if (isNaN(t)) {
+                    var possibleRoutedToken = token.token.split(':')[0];
+                    if(RoutedTokens.hasOwnProperty(possibleRoutedToken)) {
+                      E.throwError(idxE.needCurlyBrace, tokenizer, token.token);
+                    }
                     E.throwError(idxE.needQuotes, tokenizer);
                 }
                 state.indexer[state.indexer.length] = t;
@@ -111,4 +116,3 @@ module.exports = function indexer(tokenizer, openingToken, state, out) {
     // Clean state.
     state.indexer = undefined;
 };
-
