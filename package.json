@@ -2,12 +2,13 @@
   "name": "falcor-path-syntax",
   "version": "0.2.4",
   "description": "Parser for Falcor Path Syntax",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "mocha test/index.js"
+    "es5": "babel src --out-dir lib",
+    "test": "mocha --compilers js:babel-core/register test/index.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,10 @@
   },
   "homepage": "https://github.com/Netflix/falcor-path-syntax",
   "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-core": "^6.9.1",
+    "babel-plugin-transform-class-properties": "^6.9.1",
+    "babel-preset-es2015": "^6.9.0",
     "chai": "~2.2.0",
     "mocha": "^2.3.0"
   },
