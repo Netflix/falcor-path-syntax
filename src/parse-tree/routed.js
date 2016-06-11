@@ -9,7 +9,7 @@ var routedE = E.routed;
  * parse-tree:
  * <opening-brace><routed-token>(:<token>)<closing-brace>
  */
-module.exports = function routed(tokenizer, openingToken, state, out) {
+module.exports = function routed(tokenizer, openingToken, state) {
     var routeToken = tokenizer.next();
     var named = false;
     var name = '';
@@ -61,7 +61,7 @@ module.exports = function routed(tokenizer, openingToken, state, out) {
         var outputToken = {
             type: routeToken.token,
             named: named,
-            name: name
+            name: name,
         };
         state.indexer[state.indexer.length] = outputToken;
     }
@@ -72,4 +72,3 @@ module.exports = function routed(tokenizer, openingToken, state, out) {
     }
 
 };
-

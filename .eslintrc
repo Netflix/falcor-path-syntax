@@ -1,0 +1,11 @@
+{
+    "rules": {
+        "comma-dangle": [1, "always-multiline"],
+        "no-fallthrough": 1
+    },
+    "env": {
+        "es6": true,
+        "node": true
+    },
+    "extends": ["eslint:recommended"]
+}

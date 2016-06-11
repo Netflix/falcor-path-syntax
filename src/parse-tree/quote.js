@@ -9,7 +9,7 @@ var quoteE = E.quote;
  * parse-tree:
  * <opening-quote>(.|(<escape><opening-quote>))*<opening-quote>
  */
-module.exports = function quote(tokenizer, openingToken, state, out) {
+module.exports = function quote(tokenizer, openingToken, state) {
     var token = tokenizer.next();
     var innerToken = '';
     var openingQuote = openingToken.token;
@@ -79,4 +79,3 @@ module.exports = function quote(tokenizer, openingToken, state, out) {
 
     state.indexer[state.indexer.length] = innerToken;
 };
-

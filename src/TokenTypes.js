@@ -10,7 +10,7 @@ var TokenTypes = {
     space: ' ',
     colon: ':',
     quote: 'quote',
-    unknown: 'unknown'
+    unknown: 'unknown',
 };
 
 module.exports = TokenTypes;

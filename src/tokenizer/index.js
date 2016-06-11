@@ -1,4 +1,5 @@
 var TokenTypes = require('./../TokenTypes');
+
 var DOT_SEPARATOR = '.';
 var COMMA_SEPARATOR = ',';
 var OPENING_BRACKET = '[';
@@ -16,46 +17,44 @@ var CARRIAGE_RETURN = '\r';
 var SPECIAL_CHARACTERS = '\\\'"[]., \t\n\r';
 var EXT_SPECIAL_CHARACTERS = '\\{}\'"[]., :\t\n\r';
 
-var Tokenizer = module.exports = function(string, ext) {
-    this._string = string;
-    this._idx = -1;
-    this._extended = ext;
-    this.parseString = '';
-};
+module.exports = class Tokenizer {
 
-Tokenizer.prototype = {
+    constructor(string, ext) {
+        this._string = string;
+        this._idx = -1;
+        this._extended = ext;
+        this.parseString = '';
+    }
+
     /**
      * grabs the next token either from the peek operation or generates the
      * next token.
      */
-    next: function() {
-        var nextToken = this._nextToken ?
-            this._nextToken : getNext(this._string, this._idx, this._extended);
+    next() {
+        var nextToken = this._nextToken || getNext(this._string, this._idx, this._extended);
 
         this._idx = nextToken.idx;
         this._nextToken = false;
         this.parseString += nextToken.token.token;
 
         return nextToken.token;
-    },
+    }
 
     /**
      * will peak but not increment the tokenizer
      */
-    peek: function() {
-        var nextToken = this._nextToken ?
-            this._nextToken : getNext(this._string, this._idx, this._extended);
-        this._nextToken = nextToken;
+    peek() {
+        this._nextToken = this._nextToken || getNext(this._string, this._idx, this._extended);
 
-        return nextToken.token;
+        return this._nextToken.token;
     }
-};
 
-Tokenizer.toNumber = function toNumber(x) {
-    if (!isNaN(+x)) {
-        return +x;
+    static toNumber(x) {
+        if (!isNaN(+x)) {
+            return +x;
+        }
+        return NaN;
     }
-    return NaN;
 };
 
 function toOutput(token, type, done) {
@@ -154,5 +153,3 @@ function getNext(string, idx, ext) {
         idx: idx
     };
 }
-
-
