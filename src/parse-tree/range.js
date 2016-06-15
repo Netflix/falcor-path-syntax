@@ -6,7 +6,7 @@ var E = require('./../exceptions');
  * The indexer is all the logic that happens in between
  * the '[', opening bracket, and ']' closing bracket.
  */
-module.exports = function range(tokenizer, openingToken, state, out) {
+module.exports = function range(tokenizer, openingToken, state) {
     var token = tokenizer.peek();
     var dotCount = 1;
     var done = false;
@@ -74,4 +74,3 @@ module.exports = function range(tokenizer, openingToken, state, out) {
 
     state.indexer[idx] = {from: from, to: inclusive ? to : to - 1};
 };
-

@@ -1,0 +1,9 @@
+{
+    "rules": {
+        "no-fallthrough": 1
+    },
+    "env": {
+        "node": true
+    },
+    "extends": ["eslint:recommended"]
+}
