@@ -69,6 +69,7 @@ function toOutput(token, type, done) {
 function getNext(string, idx, ext) {
     var output = false;
     var token = '';
+    var done;
     var specialChars = ext ?
         EXT_SPECIAL_CHARACTERS : SPECIAL_CHARACTERS;
     var done;
@@ -154,5 +155,3 @@ function getNext(string, idx, ext) {
         idx: idx
     };
 }
-
-
