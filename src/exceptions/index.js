@@ -23,10 +23,9 @@ module.exports = {
     invalidIdentifier: 'Invalid Identifier.',
     invalidPath: 'Please provide a valid path.',
     throwError: function(err, tokenizer, token) {
-        if (token) {
-            throw err + ' -- ' + tokenizer.parseString + ' with next token: ' + token;
-        }
-        throw err + ' -- ' + tokenizer.parseString;
+        var baseMessage = err + ' -- ' + tokenizer.parseString;
+        var message = token ? baseMessage + ' with next token: ' + token : baseMessage;
+        var error = new Error(message);
+        throw error;
     }
 };
-

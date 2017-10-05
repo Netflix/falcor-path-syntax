@@ -124,7 +124,7 @@ describe('#errors', function() {
             out = parser('one[{ranges:f o o}].oneMore', true);
         } catch (e) {
             out = undefined;
-            expect(e.substr(0, errText.length)).to.equal(errText);
+            expect(e.message.substr(0, errText.length)).to.equal(errText);
         }
         expect(out).to.equal(undefined);
     });
